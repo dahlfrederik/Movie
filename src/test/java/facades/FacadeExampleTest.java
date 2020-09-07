@@ -38,11 +38,13 @@ public class FacadeExampleTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
+        Movie r1 = new Movie("Batman begins","Zack Snyder",2012);
+        Movie r2 = new Movie("Batman The Dark Knight","Zack Snyder",2014);
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
-            em.persist(new Movie("Batman begins","Zack Snyder",1));
-            em.persist(new Movie("Batman The Dark Knight","Zack Snyder",1));
+            em.persist(r1);
+            em.persist(r2);
 
             em.getTransaction().commit();
         } finally {
