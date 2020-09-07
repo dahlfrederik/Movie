@@ -22,8 +22,8 @@ public class Main {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
-            em.persist(new Movie("Batman begins", "Zack Snyder", 1));
-            em.persist(new Movie("Batman The Dark Knight", "Zack Snyder", 1));
+            em.persist(new Movie("Batman Begins", "Zack Snyder", 2012));
+            em.persist(new Movie("Batman The Dark Knight", "Zack Snyder", 2015));
 
             em.getTransaction().commit();
         } finally {

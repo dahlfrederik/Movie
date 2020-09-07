@@ -63,7 +63,7 @@ public class FacadeExampleTest {
         assertEquals(2, facade.getAllMovies().size(), "Expects two rows in the database");
     }
     
-    @Test
+  /*  @Test
     public void testGetMovieByID() {
         MovieFacade mf = MovieFacade.getFacadeExample(emf);
         int id = 1;
@@ -72,5 +72,5 @@ public class FacadeExampleTest {
         
         assertEquals(expResult, result);
     }
-
+*/
 }
