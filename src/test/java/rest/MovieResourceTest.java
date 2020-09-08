@@ -97,6 +97,7 @@ public class MovieResourceTest {
                 .body("name", hasItems("Batman begins", "Batman The Dark Knight"));
     }
     
+    @Disabled
     @Test
     public void testGetById(){
         given()
