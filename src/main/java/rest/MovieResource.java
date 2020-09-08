@@ -56,5 +56,20 @@ public class MovieResource {
         }
        
     }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("byname/{name}")
+    public String movieByName(@PathParam("name") String name) {
+        try{
+            MovieFacade mf = MovieFacade.getFacadeExample(EMF); 
+            MovieDTO mov = mf.getMovieByName(name);
+                            
+            return new Gson().toJson(mov);
+        } catch (javax.persistence.NoResultException e) {
+            String errorString = "The name " + name + " is not in the database and therefore this program cannot show you the result";
+            return new Gson().toJson(errorString);
+        }
+    }
    
 }

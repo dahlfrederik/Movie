@@ -70,5 +70,20 @@ public class MovieFacade {
             em.close(); 
         }
     }
-  
+       
+       public MovieDTO getMovieByName(String name){
+              EntityManager em = emf.createEntityManager();
+        try {
+            Query query2 = em.createQuery("Select e FROM Movie e WHERE e.name = :name");
+            query2.setParameter("name", name);
+            Movie mov = (Movie) query2.getSingleResult();
+            MovieDTO movDTO = new MovieDTO(mov); 
+            return movDTO;
+        } finally {
+            em.close();
+        }
+    }
+           
 }
+  
+

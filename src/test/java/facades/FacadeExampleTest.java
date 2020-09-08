@@ -75,4 +75,14 @@ public class FacadeExampleTest {
         assertEquals(expResult, result);
     }
     */
+    
+     @Test
+        public void testGetMovieByName() {
+        MovieFacade cf = MovieFacade.getFacadeExample(emf);
+        String name = "Batman Begins";
+        String expResult = "Batman Begins";
+        String result = cf.getMovieByName(name).getName();
+
+        assertEquals(expResult, result);
+    }
 }
