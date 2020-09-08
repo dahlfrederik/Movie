@@ -84,9 +84,10 @@ public class MovieFacade {
     public MovieDTO getMovieByName(String name) {
         EntityManager em = emf.createEntityManager();
         try {
-            Query query = em.createNamedQuery("Movie.getByTitle");
+            Query query = em.createNamedQuery("Movie.getMovieByName");
             query.setParameter("name", name);
-            MovieDTO movDTO = (MovieDTO) query.getSingleResult();
+            Movie mov = (Movie) query.getSingleResult();
+            MovieDTO movDTO = new MovieDTO(mov); 
 
             return movDTO;
         } finally {
