@@ -18,6 +18,7 @@ public class FacadeExampleTest {
 
     private static EntityManagerFactory emf;
     private static MovieFacade facade;
+    private Movie r1, r2; 
 
     public FacadeExampleTest() {
     }
@@ -38,8 +39,8 @@ public class FacadeExampleTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        Movie r1 = new Movie("Batman begins","Zack Snyder",2012);
-        Movie r2 = new Movie("Batman The Dark Knight","Zack Snyder",2014);
+        r1 = new Movie("Batman begins","Zack Snyder",2012);
+        r2 = new Movie("Batman The Dark Knight","Zack Snyder",2014);
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
@@ -64,17 +65,15 @@ public class FacadeExampleTest {
         int expected = 2; 
         assertEquals(expected, expected, "Expects two rows in the database");
     }
-    /*
+    
     @Test
     public void testGetMovieByID() {
-        MovieFacade mf = MovieFacade.getFacadeExample(emf);
-        int id = 1;
-        int expResult = 1;
-        int result = mf.getMovieById(id).getId(); 
+        MovieDTO m1 = new MovieDTO(r1); 
+        MovieDTO movie = facade.getMovieById(m1.getId());
+        assertEquals("Batman begins",movie.getName());
         
-        assertEquals(expResult, result);
-    }
-    */
+       }
+    
     
      @Test
         public void testGetMovieByName() {
