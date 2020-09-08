@@ -71,5 +71,35 @@ public class MovieResource {
             return new Gson().toJson(errorString);
         }
     }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("count")
+    public String count() {
+        try{
+            MovieFacade mf = MovieFacade.getFacadeExample(EMF); 
+            long count = mf.getMovieCount(); 
+                            
+            return new Gson().toJson(count);
+        } catch (javax.persistence.NoResultException e) {
+            String errorString = "The count cannot be done in the database and therefore this program cannot show you the result";
+            return new Gson().toJson(errorString);
+        }
+    }
+    
+     @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("populate")
+    public String populate() {
+        try{
+            MovieFacade mf = MovieFacade.getFacadeExample(EMF); 
+            mf.populateDB();
+                            
+            return new Gson().toJson("The DB is populated, see /all for more");
+        } catch (javax.persistence.NoResultException e) {
+            String errorString = "The count cannot be done in the database and therefore this program cannot show you the result";
+            return new Gson().toJson(errorString);
+        }
+    }
    
 }

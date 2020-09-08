@@ -108,6 +108,8 @@ public class MovieFacade {
             EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
+            em.persist(new Movie("Batman Begins", "Zack Snyder", 2012));
+            em.persist(new Movie("Batman The Dark Knight", "Zack Snyder", 2015));
             em.persist(new Movie("Topgun", "Kelly McGills", 1986));
             em.persist(new Movie("Kill Bill","John",2003));
             em.persist(new Movie("Point Break", "John 2", 1991));
