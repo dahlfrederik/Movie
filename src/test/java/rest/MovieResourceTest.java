@@ -118,5 +118,14 @@ public class MovieResourceTest {
                 .body("name", equalTo(r1.getName())); 
     }
     
+    @Test
+    public void testCount() throws Exception {
+        given()
+        .contentType("application/json")
+        .get("/function/count").then()
+        .assertThat()
+        .statusCode(HttpStatus.OK_200.getStatusCode())
+        .body("count", equalTo(2));   
+    }
  
 }

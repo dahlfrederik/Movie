@@ -18,15 +18,15 @@ public class FacadeExampleTest {
 
     private static EntityManagerFactory emf;
     private static MovieFacade facade;
-    private Movie r1, r2; 
+    private Movie r1, r2;
 
     public FacadeExampleTest() {
     }
 
     @BeforeAll
     public static void setUpClass() {
-       emf = EMF_Creator.createEntityManagerFactoryForTest();
-       facade = MovieFacade.getFacadeExample(emf);
+        emf = EMF_Creator.createEntityManagerFactoryForTest();
+        facade = MovieFacade.getFacadeExample(emf);
     }
 
     @AfterAll
@@ -39,8 +39,8 @@ public class FacadeExampleTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        r1 = new Movie("Batman begins","Zack Snyder",2012);
-        r2 = new Movie("Batman The Dark Knight","Zack Snyder",2014);
+        r1 = new Movie("Batman begins", "Zack Snyder", 2012);
+        r2 = new Movie("Batman The Dark Knight", "Zack Snyder", 2014);
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();
@@ -61,22 +61,21 @@ public class FacadeExampleTest {
     @Test
     public void testGetAllMovies() {
         MovieFacade mf = MovieFacade.getFacadeExample(emf);
-        int result = mf.getAllMovies().size(); 
-        int expected = 2; 
+        int result = mf.getAllMovies().size();
+        int expected = 2;
         assertEquals(expected, expected, "Expects two rows in the database");
     }
-    
+
     @Test
     public void testGetMovieByID() {
-        MovieDTO m1 = new MovieDTO(r1); 
+        MovieDTO m1 = new MovieDTO(r1);
         MovieDTO movie = facade.getMovieById(m1.getId());
-        assertEquals("Batman begins",movie.getName());
-        
-       }
-    
-    
-     @Test
-        public void testGetMovieByName() {
+        assertEquals("Batman begins", movie.getName());
+
+    }
+
+    @Test
+    public void testGetMovieByName() {
         MovieFacade cf = MovieFacade.getFacadeExample(emf);
         String name = "Batman begins";
         String expResult = "Batman begins";

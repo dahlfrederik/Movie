@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory(); 
         EntityManager em = emf.createEntityManager();
+        
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Movie.deleteAllRows").executeUpdate();

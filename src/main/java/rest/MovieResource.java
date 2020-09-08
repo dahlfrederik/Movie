@@ -80,7 +80,7 @@ public class MovieResource {
             MovieFacade mf = MovieFacade.getFacadeExample(EMF); 
             long count = mf.getMovieCount(); 
                             
-            return GSON.toJson(count);
+             return "{\"count\":"+count+"}";
         } catch (javax.persistence.NoResultException e) {
             String errorString = "The count cannot be done in the database and therefore this program cannot show you the result";
             return GSON.toJson(errorString);
