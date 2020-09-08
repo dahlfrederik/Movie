@@ -42,7 +42,7 @@ public class MovieFacade {
     public MovieDTO getMovieById(int id){
          EntityManager em = emf.createEntityManager();
         try {
-            Query query2 = em.createQuery("Select e FROM Movie e WHERE e.id = :id");
+            Query query2 = em.createNamedQuery("Movie.getMovieById");
             query2.setParameter("id", id);
             Movie mov = (Movie) query2.getSingleResult();
             MovieDTO movDTO = new MovieDTO(mov); 
@@ -55,7 +55,7 @@ public class MovieFacade {
        public List<MovieDTO> getAllMovies() {
          EntityManager em = emf.createEntityManager(); 
         try{
-            Query query2 = em.createQuery("Select e FROM Movie e ");
+            Query query2 = em.createNamedQuery("Movie.getAll");
                    
             List<Movie> movieList = query2.getResultList(); 
             List<MovieDTO> movieDTOList = new ArrayList(); 
@@ -74,7 +74,7 @@ public class MovieFacade {
        public MovieDTO getMovieByName(String name){
               EntityManager em = emf.createEntityManager();
         try {
-            Query query2 = em.createQuery("Select e FROM Movie e WHERE e.name = :name");
+            Query query2 = em.createNamedQuery("Movie.getMovieByName");
             query2.setParameter("name", name);
             Movie mov = (Movie) query2.getSingleResult();
             MovieDTO movDTO = new MovieDTO(mov); 
