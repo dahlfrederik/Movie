@@ -95,7 +95,27 @@ public class MovieResourceTest {
                 .body("size", is(2))
                 .and()
                 .body("name", hasItems("Batman begins", "Batman The Dark Knight"));
-
     }
-
+    
+    @Test
+    public void testGetById(){
+        given()
+                .contentType("application/json")
+                .get("/function/byid/1").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("id", equalTo(r1.getId()));             
+    }
+    
+    @Test
+    public void testSpecificName() throws Exception {
+        given()
+        .contentType("application/json")
+        .get("/function/byname/Batman begins").then()
+                .assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("name", equalTo(r1.getName())); 
+    }
+    
+ 
 }
