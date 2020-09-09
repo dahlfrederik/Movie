@@ -87,7 +87,7 @@ public class MovieResource {
         }
     }
     
-     @GET
+    @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("populate")
     public String populate() {
@@ -98,6 +98,21 @@ public class MovieResource {
             return GSON.toJson("The DB is populated, see /all for more");
         } catch (javax.persistence.NoResultException e) {
             String errorString = "The count cannot be done in the database and therefore this program cannot show you the result";
+            return GSON.toJson(errorString);
+        }
+    }
+    
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    @Path("empty")
+    public String empty() {
+        try{
+            MovieFacade mf = MovieFacade.getFacadeExample(EMF); 
+            mf.deleteAllMovies();
+                    
+            return GSON.toJson("The DB is deleted, see /all for more");
+        } catch (javax.persistence.NoResultException e) {
+            String errorString = "The DB deletion cannot be done in the database and therefore this program cannot show you the result";
             return GSON.toJson(errorString);
         }
     }

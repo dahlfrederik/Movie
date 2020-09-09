@@ -97,6 +97,7 @@ public class MovieResourceTest {
                 .body("name", hasItems("Batman begins", "Batman The Dark Knight"));
     }
     
+    //THIS TEST GOES STRAIGHT TO THE EXCEPTION. DONT KNOW WHY. 
     @Disabled 
     @Test
     public void testGetById(){

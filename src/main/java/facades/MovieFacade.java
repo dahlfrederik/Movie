@@ -52,7 +52,7 @@ public class MovieFacade {
 
     public MovieDTO getMovieById(int id) {
         EntityManager em = emf.createEntityManager();
-        try {
+        try {        
             Query query2 = em.createNamedQuery("Movie.getMovieById");
             query2.setParameter("id", id);
             Movie mov = (Movie) query2.getSingleResult();
