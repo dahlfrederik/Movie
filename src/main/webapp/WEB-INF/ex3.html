@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Namelist</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <div id="namelist">Her burde være en navneliste</div>
+
+        <form action="#" >
+            <input id="fname" type="text" name="fname">
+            <input id="submit" type="submit" value="Submit">
+            <input id="removeFirst" type="submit" value="Remove first">
+            <input id="removeLast" type="submit" value="Remove last">
+        </form>
+
+
+        <script>
+            let names = ["Lars", "Jan", "Peter", "Bo", "Frederik"];
+
+            document.getElementById("namelist").addEventListener("load", htmlNames());
+
+            function htmlNames() {
+                document.getElementById("namelist").innerHTML = "<ul>" + names.map(n => "<li>" + n), +(names.join("</li><li> </li>") + "</ul>");
+            }
+
+
+            document.getElementById("submit").addEventListener("click", addName);
+            document.getElementById("removeFirst").addEventListener("click", removeFirst);
+            document.getElementById("removeLast").addEventListener("click", removeLast);
+
+            function addName(e) {
+                e.preventDefault();
+                let name = document.getElementById("fname").value;
+                names = [name, ...names];
+                htmlNames();
+            }
+            
+            function removeFirst(e) {
+                e.preventDefault();
+                names.shift();
+                htmlNames();
+            }
+            
+            function removeLast(e) {
+                e.preventDefault();
+                names.pop();
+                htmlNames();
+            }
+            
+            
+        </script>
+    </body>
+</html>
